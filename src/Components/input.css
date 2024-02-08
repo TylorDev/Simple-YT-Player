@@ -1,0 +1,36 @@
+.progreso {
+    -webkit-appearance: none;
+    margin-right: 15px;
+    width: 100%;
+    height: 4px;
+    background: rgba(152, 152, 152, 0.557);
+    border-radius: 5px;
+    background-image: linear-gradient(#ff0000, #ff0000);
+    background-size: 20% 100%;
+    background-repeat: no-repeat;
+  }
+  
+  
+
+  .progreso:hover{
+    height: 7px;
+  }
+  .progreso::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 0px;
+    width: 0px;
+    border-radius: 50%;
+    background: #ff0000;
+    cursor: ew-resize;
+    box-shadow: 0 0 2px 0 #555;
+    transition: height 0.3s, width 0.3s;
+
+
+  }
+  
+ 
+  .progreso:hover::-webkit-slider-thumb {
+    height: 20px;
+    width: 20px;
+
+  }
