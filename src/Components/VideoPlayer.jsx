@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from "react";
+/* eslint-disable react/prop-types */
+import { useState, useRef } from "react";
 import { ProgressBar } from "./ProgressBar";
 import { Video } from "./Video";
 import { videolinks } from "./videolinks";
@@ -97,6 +98,11 @@ export function VideoPlayer({ index = 0 }) {
     videoRef.current.muted = newMuteState;
   };
 
+  const toggleFullscreen = () => {
+    if (videoRef.current) {
+      videoRef.current.requestFullscreen();
+    }
+  };
   /**
    * Maneja el evento de clic en el botón de reproducir/pausa del video.
    * Pausa el video si está reproduciéndose, o lo reproduce si está pausado.
@@ -141,7 +147,7 @@ export function VideoPlayer({ index = 0 }) {
   return (
     <div className="[Container]  flex flex-col items-center pt-2  ">
       <div className="[Video-Container] group flex flex-col m-0 w-[800px]    bg-[#545a6b]     rounded-[15px]  overflow-hidden">
-        <div  onClick={handlePlayPauseClick}  >
+        <div onClick={handlePlayPauseClick}>
           <Video
             videoRef={videoRef}
             handleTimeUpdate={GetCurrentTime}
@@ -149,10 +155,9 @@ export function VideoPlayer({ index = 0 }) {
             videolinks={videolinks[index]}
           ></Video>
         </div>
-       
 
-        <div  className="  -mt-[20.7%] z-50  invisible  bg-gradient-to-t from-[#000000af] to-transparent h-full  group-hover:visible  ">
-          <ProgressBar  
+        <div className="-mt-[20.7%] z-50  invisible  bg-gradient-to-t from-[#000000af] to-transparent h-full  group-hover:visible  ">
+          <ProgressBar
             currentTime={currentTime}
             duration={duration}
             onCurrentTimeChange={handleCurrentTimeChange}
@@ -172,16 +177,10 @@ export function VideoPlayer({ index = 0 }) {
             formatTime={formatTime}
             currentTime={currentTime}
             duration={duration}
+            toggleFullscreen={toggleFullscreen}
           />
         </div>
-
-    
       </div>
-
-
-
-
-
     </div>
   );
 }
